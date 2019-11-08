@@ -1,0 +1,57 @@
+<div class="content">
+  <p class="mat-body">Cols: {{cols}}</p>
+  
+  <mat-slide-toggle [checked]="responsive"
+    (toggleChange)="responsive = !responsive">
+    Responsive
+  </mat-slide-toggle>
+
+  <mat-grid-list 
+    [responsive]="responsive"
+    (responsiveColsChange)="cols = $event"
+    rowHeight="60"
+    gutterSize="6px">
+    <mat-grid-tile *ngFor="let folder of folders">
+      <a class="grid-list-item mat-body mat-elevation-z2"
+        mat-ripple
+        [href]="folder.link">
+        <mat-icon>insert_drive_file</mat-icon>
+        <span class="flex-remain">{{folder.name}}</span>
+        <button mat-icon-button 
+          [matMenuTriggerFor]="menu"
+          (click)="$event.preventDefault()">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" 
+          xPosition="before"
+          overlapTrigger="false">
+          <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span>Redial</span>
+          </button>
+          <button mat-menu-item disabled>
+            <mat-icon>voicemail</mat-icon>
+            <span>Check voicemail</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Disable alerts</span>
+          </button>
+        </mat-menu>
+      </a>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list 
+    [responsive]="responsive"
+    (responsiveColsChange)="cols = $event">
+    <mat-grid-tile style="background:red">1</mat-grid-tile>
+    <mat-grid-tile style="background: orange">2</mat-grid-tile>
+    <mat-grid-tile style="background: yellow">3</mat-grid-tile>
+    <mat-grid-tile style="background: green">4</mat-grid-tile>
+    <mat-grid-tile style="background:red">1</mat-grid-tile>
+    <mat-grid-tile style="background: orange">2</mat-grid-tile>
+    <mat-grid-tile style="background: yellow">3</mat-grid-tile>
+    <mat-grid-tile style="background: green">4</mat-grid-tile>
+  </mat-grid-list> 
+</div>
